@@ -579,3 +579,10 @@ body.light-theme .hero-content h1 span {
     -webkit-text-fill-color: var(--accent); /* Le damos el color morado sólido */
     color: var(--accent); /* Respaldo de seguridad */
 }
+/* --- Tamaño de los iconos personalizados de tema --- */
+.theme-icon-img {
+    width: 24px; /* Ajusta este valor si los ves muy grandes o chicos */
+    height: 24px;
+    object-fit: contain; /* Evita que la imagen se deforme */
+    transition: transform 0.3s ease;
+}
