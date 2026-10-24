@@ -19,14 +19,14 @@
 
 /* --- Variables Modo Claro --- */
 body.light-theme {
-    --bg-main: #F4F4F8;
+    --bg-main: #F0F2F5; 
     --text-main: #111827;
     --text-muted: #4B5563;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.05);
-    --nav-bg: rgba(244, 244, 248, 0.8);
-    --shadow: rgba(0, 0, 0, 0.05);
-    --shadow-hover: rgba(124, 58, 237, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.45); /* Más transparente para ver las letras del fondo */
+    --glass-border: rgba(255, 255, 255, 0.95); /* Borde casi blanco puro para el "brillo" del cristal */
+    --nav-bg: rgba(240, 242, 245, 0.7);
+    --shadow: rgba(0, 0, 0, 0.08); /* Sombra suave para separar la tarjeta del fondo */
+    --shadow-hover: rgba(124, 58, 237, 0.25);
 }
 
 /* --- Reseteo Básico --- */
