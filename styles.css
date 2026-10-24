@@ -569,3 +569,8 @@ footer {
 @media (min-width: 1024px) {
     .grid-3-cols { grid-template-columns: repeat(3, 1fr); }
 }
+/* --- Restaurar barra limpia en Modo Claro --- */
+body.light-theme .navbar {
+    background-image: none; 
+    background-color: var(--nav-bg); 
+}
