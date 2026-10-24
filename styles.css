@@ -158,7 +158,7 @@ section { padding: 6rem 0; }
     width: 100%;
     
     /* Primero, el color de respaldo de la variable de CSS */
-    background-color: var(--nav-bg);
+    background-color: transparent;
     
     /* El diseño de Affinity como fondo en formato PNG */
     background-image: url('img/nav-bg.png');
