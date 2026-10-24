@@ -1,14 +1,29 @@
-/* --- Variables Minimalistas Claras --- */
+/* --- Variables por defecto (Modo Oscuro / Púrpura base) --- */
 :root {
+    --bg-main: #0F0E17;
+    --bg-alt: #1A1830;
+    --text-main: #E8E6F0;
+    --text-muted: #9B97B0;
+    --accent: #7C3AED;
+    --accent-hover: #A78BFA;
+    --border: rgba(255, 255, 255, 0.05);
+    --nav-bg: rgba(15, 14, 23, 0.9);
+    --card-bg: #1A1830;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --shadow-hover: rgba(124, 58, 237, 0.25);
+}
+
+/* --- Variables Modo Claro (Opcional) --- */
+body.light-theme {
     --bg-main: #FFFFFF;
-    --bg-alt: #F9FAFB; /* Gris muy claro para secciones alternas */
-    --text-main: #111827; /* Gris casi negro */
-    --text-muted: #4B5563; /* Gris medio */
-    --accent: #2563EB; /* Azul vibrante */
-    --accent-hover: #1D4ED8;
+    --bg-alt: #F9FAFB;
+    --text-main: #111827;
+    --text-muted: #4B5563;
     --border: #E5E7EB;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --card-bg: #FFFFFF;
     --shadow: rgba(0, 0, 0, 0.05);
-    --shadow-hover: rgba(37, 99, 235, 0.15); /* Sombra con tinte azul */
+    --shadow-hover: rgba(124, 58, 237, 0.15);
 }
 
 /* --- Reseteo Básico --- */
@@ -27,6 +42,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -60,11 +76,12 @@ section {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--nav-bg);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
     padding: 1rem 0;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .nav-container {
@@ -79,8 +96,29 @@ section {
     color: var(--accent);
 }
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
 .nav-links {
-    display: none; /* Oculto en móvil */
+    display: none; 
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -202,12 +240,13 @@ section {
 /* --- Placeholders e Imágenes --- */
 .placeholder-img, .card-img-placeholder {
     background-color: var(--bg-alt);
-    border: 2px dashed var(--border);
+    border: 2px dashed var(--accent); /* Borde púrpura para que resalte en fondo oscuro */
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
     border-radius: 12px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .placeholder-img {
@@ -221,22 +260,23 @@ section {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: none;
-    background-color: #E2E8F0;
+    border-bottom: 1px solid var(--border);
 }
 
 .card-img-placeholder.small {
     height: 160px;
     border-radius: 8px;
     margin-bottom: 1rem;
+    border: 1px dashed var(--accent);
 }
 
 /* --- Cards de Proyectos --- */
 .card {
-    background: #FFF;
+    background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
 .card:hover {
@@ -249,8 +289,8 @@ section {
 }
 
 .tag {
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--accent);
+    background: rgba(124, 58, 237, 0.15);
+    color: var(--accent-hover); /* Acento más claro para resaltar en fondo oscuro */
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -266,7 +306,7 @@ section {
     opacity: 0;
     padding: 0 1.5rem;
     background: var(--bg-alt);
-    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease, background-color 0.3s;
 }
 
 .card-details.open {
@@ -279,6 +319,7 @@ section {
 .card-details h4 {
     font-size: 1rem;
     margin: 1rem 0 0.5rem;
+    color: var(--text-main);
 }
 
 .card-details h4:first-child {
@@ -293,6 +334,7 @@ section {
 /* --- Fondo Alterno --- */
 .bg-light {
     background-color: var(--bg-alt);
+    transition: background-color 0.3s;
 }
 
 /* --- Formulario de Contacto --- */
@@ -318,13 +360,15 @@ input, textarea {
     border: 1px solid var(--border);
     border-radius: 8px;
     font-family: inherit;
-    background: #FFF;
+    background: var(--card-bg);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 input:focus, textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
 }
 
 /* --- Socials & Footer --- */
@@ -345,6 +389,7 @@ footer {
     border-top: 1px solid var(--border);
     color: var(--text-muted);
     font-size: 0.9rem;
+    transition: border-color 0.3s;
 }
 
 /* --- Animaciones Fade-in --- */
@@ -361,8 +406,11 @@ footer {
 
 /* --- Responsive (Media Queries) --- */
 @media (min-width: 768px) {
-    /* Muestra menú desktop */
     .menu-toggle { display: none; }
+    
+    .nav-controls {
+        flex-direction: row-reverse; 
+    }
     
     .nav-links {
         display: flex;
