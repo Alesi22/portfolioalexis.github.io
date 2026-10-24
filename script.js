@@ -4,15 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = themeBtn.querySelector('.theme-icon');
     
-    // Como el tema base (CSS :root) es oscuro, solo aplicamos la clase si el usuario eligió "light"
     if (localStorage.getItem('theme') === 'light') {
         document.body.classList.add('light-theme');
-        themeIcon.textContent = '🌙'; // Muestra la luna para poder volver al oscuro
+        themeIcon.textContent = '🌙'; 
     } else {
-        themeIcon.textContent = '☀️'; // Por defecto muestra el sol para pasar a claro
+        themeIcon.textContent = '☀️'; 
     }
 
-    // Alternar tema al hacer click
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
         
@@ -59,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. Intersect Observer para animaciones "fade-in"
+    // Nota: Si abres la página y está en blanco, es porque este código 
+    // está esperando que hagas scroll. Si no bajas, no aparece.
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {
