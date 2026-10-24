@@ -2,23 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Lógica del Tema 
     const themeBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeBtn.querySelector('.theme-icon');
+    const themeIcon = themeBtn.querySelector('.theme-icon-img');
     
+    // Al cargar la página, revisa qué tema está guardado
     if (localStorage.getItem('theme') === 'light') {
         document.body.classList.add('light-theme');
-        themeIcon.textContent = '🌙'; 
+        themeIcon.src = 'img/luna.png'; // En modo claro mostramos la luna
     } else {
-        themeIcon.textContent = '☀️'; 
+        themeIcon.src = 'img/sol.png'; // En modo oscuro mostramos el sol
     }
 
+    // Al hacer clic en el botón
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
         
         if (document.body.classList.contains('light-theme')) {
-            themeIcon.textContent = '🌙';
+            themeIcon.src = 'img/luna.png';
             localStorage.setItem('theme', 'light');
         } else {
-            themeIcon.textContent = '☀️';
+            themeIcon.src = 'img/sol.png';
             localStorage.setItem('theme', 'dark');
         }
     });
