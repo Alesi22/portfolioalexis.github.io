@@ -81,7 +81,7 @@ body {
 
 /* Aumentamos la opacidad para que resalten sobre el fondo blanco */
 body.light-theme .bg-text {
-    color: rgba(124, 58, 237, 0.25); 
+    color: rgba(124, 58, 237, 0.8); /* Cambiado a 0.8 para probar */
 }
 
 .text-1 { 
@@ -97,7 +97,7 @@ body.light-theme .bg-text {
 
 /* Aumentamos la opacidad de la segunda palabra en el modo claro */
 body.light-theme .text-2 {
-    color: rgba(124, 58, 237, 0.20); 
+    color: rgba(124, 58, 237, 0.8); /* Cambiado a 0.8 para probar */
 }
 
 @keyframes floatText {
