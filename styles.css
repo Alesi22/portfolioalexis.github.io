@@ -70,23 +70,34 @@ body {
     font-family: var(--font-heading);
     font-weight: 800;
     font-size: 25vw;
-    color: rgba(124, 58, 237, 0.12); /* Morado sutil */
+    color: rgba(124, 58, 237, 0.12); /* Morado sutil en modo oscuro */
     line-height: 0.8;
-    filter: blur(12px); /* Efecto difuminado principal */
+    filter: blur(12px);
     white-space: nowrap;
     animation: floatText 25s ease-in-out infinite alternate;
+    /* Agregamos una transición para que el color cambie suavemente al tocar el botón */
+    transition: color 0.6s ease-in-out; 
 }
 
+/* Aumentamos la opacidad para que resalten sobre el fondo blanco */
 body.light-theme .bg-text {
-    color: rgba(124, 58, 237, 0.05); /* Más sutil en fondo blanco */
+    color: rgba(124, 58, 237, 0.25); 
 }
 
-.text-1 { transform: translateX(-10%); }
+.text-1 { 
+    transform: translateX(-10%); 
+}
+
 .text-2 { 
     transform: translateX(10%); 
-    color: rgba(167, 139, 250, 0.08); /* Tono alternativo */
+    color: rgba(167, 139, 250, 0.08);
     animation-delay: -5s; 
     animation-duration: 30s;
+}
+
+/* Aumentamos la opacidad de la segunda palabra en el modo claro */
+body.light-theme .text-2 {
+    color: rgba(124, 58, 237, 0.20); 
 }
 
 @keyframes floatText {
