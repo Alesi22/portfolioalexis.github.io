@@ -27,7 +27,6 @@ body.light-theme {
     --nav-bg: rgba(240, 242, 245, 0.7);
     --shadow: rgba(0, 0, 0, 0.08); /* Sombra suave para separar la tarjeta del fondo */
     --shadow-hover: rgba(124, 58, 237, 0.25);
-    --background-image: url('img/nav-bg-light.png');
 }
 
 /* --- Reseteo Básico --- */
