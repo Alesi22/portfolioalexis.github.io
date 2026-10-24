@@ -574,3 +574,8 @@ body.light-theme .navbar {
     background-image: none; 
     background-color: var(--nav-bg); 
 }
+body.light-theme .hero-content h1 span {
+    background: none; /* Quitamos el degradado */
+    -webkit-text-fill-color: var(--accent); /* Le damos el color morado sólido */
+    color: var(--accent); /* Respaldo de seguridad */
+}
