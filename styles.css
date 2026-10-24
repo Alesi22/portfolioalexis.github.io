@@ -161,7 +161,7 @@ section { padding: 6rem 0; }
     background-color: var(--nav-bg);
     
     /* El diseño de Affinity como fondo en formato PNG */
-    background-image: url('img/nav-bg.png'); 
+    background-image: url('img/nav-bg.png');
     background-size: cover;          /* Asegura que cubra el ancho y alto del menú */
     background-position: center;     /* Centrado para el recorte en dispositivos móviles */
     background-repeat: no-repeat;    /* Evita mosaicos molestos */
