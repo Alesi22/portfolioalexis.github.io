@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Lógica del Tema (Base: Oscuro/Púrpura)
+    // 1. Lógica del Tema 
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = themeBtn.querySelector('.theme-icon');
     
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Menú Móvil (Toggle)
+    // 2. Menú Móvil
     const menuBtn = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
@@ -56,9 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Intersect Observer para animaciones "fade-in"
-    // Nota: Si abres la página y está en blanco, es porque este código 
-    // está esperando que hagas scroll. Si no bajas, no aparece.
+    // 4. Intersect Observer para animaciones fluidas
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {

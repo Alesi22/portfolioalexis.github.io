@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexis Agustin Rivero | Diseñador Digital Junior</title>
     
-    <!-- Google Fonts: Poppins -->
+    <!-- Google Fonts: Montserrat (Títulos/Navegación) e Inter (Textos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- FONDO ANIMADO TIPOGRÁFICO -->
+    <div class="animated-bg">
+        <div class="bg-text text-1">CREATIVE</div>
+        <div class="bg-text text-2">DESIGN</div>
+    </div>
+
     <!-- Navegación -->
     <header class="navbar">
         <div class="container nav-container">
-            <!-- LOGO SIN EL PUNTO FINAL -->
             <a href="#hero" class="logo">Alexis</a>
             
             <div class="nav-controls">
-                <!-- Botón de Modo Oscuro/Claro -->
                 <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
                     <span class="theme-icon">☀️</span>
                 </button>
@@ -35,6 +39,7 @@
 
             <nav class="nav-links">
                 <a href="#sobre-mi">Sobre mí</a>
+                <a href="#herramientas">Herramientas</a>
                 <a href="#proyectos">Proyectos</a>
                 <a href="#laboratorio">En proceso</a>
                 <a href="#contacto" class="btn-contacto">Contacto</a>
@@ -46,23 +51,66 @@
         <!-- SECCIÓN 1: Hero -->
         <section id="hero" class="fade-in">
             <div class="container hero-content">
-                <h1>Hola, soy <span>Alexis Agustin Rivero</span></h1>
-                <h2>Diseñador Digital Junior</h2>
-                <p>Construyendo sistemas visuales y experiencias digitales con curiosidad, técnica y muchas ganas de aprender.</p>
-                <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+                <div class="hero-glass-box">
+                    <h1>Hola, soy <span>Alexis Agustin Rivero</span></h1>
+                    <h2>Diseñador Digital Junior</h2>
+                    <p>Construyendo sistemas visuales y experiencias digitales con curiosidad, técnica y muchas ganas de aprender.</p>
+                    <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+                </div>
             </div>
         </section>
 
         <!-- SECCIÓN 2: Sobre mí -->
         <section id="sobre-mi" class="fade-in">
             <div class="container grid-2-cols">
-                <!-- Imagen de perfil placeholder -->
-                <img src="https://picsum.photos/seed/alexis/500/500" alt="Foto de perfil de Alexis" class="profile-img">
+                <img src="img/perfil.jpg" alt="Foto de perfil de Alexis" class="profile-img glass-effect">
                 
-                <div class="about-text">
+                <div class="about-text glass-effect glass-padding">
                     <h2>Sobre mí</h2>
                     <p>Soy un estudiante avanzado de la Tecnicatura en Diseño Digital y Videojuegos en la Universidad de La Punta. Elegí el diseño porque me fascina construir sistemas visuales que funcionen y cuenten una historia, ya sea a través de una interfaz, el branding o el movimiento.</p>
                     <p>Me motiva entender el "por qué" detrás de cada decisión estética, y actualmente dedico mi tiempo a cruzar herramientas como Blender y la suite de Adobe para expandir mis capacidades creativas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Herramientas -->
+        <section id="herramientas" class="fade-in">
+            <div class="container">
+                <h2 class="section-title">Mi Ecosistema de Trabajo</h2>
+                <div class="tools-grid">
+                    <!-- Iconos de Software minimalistas (estilo cuadro) -->
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Fg</div>
+                        <span>Figma</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Ps</div>
+                        <span>Photoshop</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Ai</div>
+                        <span>Illustrator</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Ae</div>
+                        <span>After Effects</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Bl</div>
+                        <span>Blender</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Cv</div>
+                        <span>Canvas / Canva</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Af</div>
+                        <span>Affinity</span>
+                    </div>
+                    <div class="tool-card glass-effect">
+                        <div class="tool-icon">Cr</div>
+                        <span>Corel / GIMP</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -74,27 +122,25 @@
                 <div class="grid-3-cols">
                     
                     <!-- Card 1 -->
-                    <div class="card fade-in">
-                        <img src="https://picsum.photos/seed/stream/800/600" alt="Stream Pack" class="card-img">
+                    <div class="card glass-effect fade-in">
+                        <img src="img/proyecto-stream.jpg" alt="Stream Pack" class="card-img">
                         <div class="card-content">
                             <span class="tag">UI/UX & Motion</span>
                             <h3>Stream Pack Overlays</h3>
-                            <p>Paquete completo de overlays para Twitch diseñado con Illustrator, Photoshop y After Effects.</p>
+                            <p>Paquete de overlays para Twitch diseñado con Illustrator, Photoshop y After Effects.</p>
                             <button class="btn-text toggle-btn">Ver caso de estudio</button>
                         </div>
                         <div class="card-details">
                             <h4>Contexto & Reto</h4>
-                            <p>Traducir la personalidad del creador en un ecosistema visual coherente abarcando estáticos y motion graphics, siendo mi primera experiencia gestionando requerimientos.</p>
+                            <p>Traducir la personalidad del creador en un ecosistema visual coherente abarcando estáticos y motion graphics, siendo mi primera experiencia gestionando requerimientos reales.</p>
                             <h4>Proceso</h4>
-                            <p>Entrevista exploratoria de paleta y referencias. Iteré 3 conceptos descartando los recargados. Vectoricé en Illustrator, diseñé UI en Photoshop y animé en After Effects priorizando no distraer del gameplay.</p>
-                            <h4>Resultado & Aprendizaje</h4>
-                            <p>Un paquete listo para transmisión. Comprendí que el diseño es comunicación funcional, aprendiendo a traducir ideas y optimizar flujos de trabajo.</p>
+                            <p>Entrevista exploratoria de paleta y referencias. Iteré 3 conceptos. Vectoricé en Illustrator, diseñé UI en Photoshop y animé en After Effects priorizando no distraer del gameplay.</p>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="card fade-in">
-                        <img src="https://picsum.photos/seed/branding/800/600" alt="Greenny Indu" class="card-img">
+                    <div class="card glass-effect fade-in">
+                        <img src="img/proyecto-greenny.jpg" alt="Greenny Indu" class="card-img">
                         <div class="card-content">
                             <span class="tag">Branding</span>
                             <h3>Greenny Indu</h3>
@@ -103,22 +149,22 @@
                         </div>
                         <div class="card-details">
                             <h4>Contexto & Proceso</h4>
-                            <p>Trabajo integrador universitario de branding aplicado a publicidad. Realicé un análisis de identidad visual y creación de mockups realistas en Photoshop para presentación de marca, cuidando iluminación y composición visual.</p>
+                            <p>Trabajo integrador universitario de branding aplicado a publicidad. Realicé un análisis de identidad visual y creación de mockups realistas en Photoshop para presentación de marca, cuidando la composición.</p>
                         </div>
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="card fade-in">
-                        <img src="https://picsum.photos/seed/bakery/800/600" alt="Flyer Bakery" class="card-img">
+                    <div class="card glass-effect fade-in">
+                        <img src="img/proyecto-bakery.jpg" alt="Flyer Bakery" class="card-img">
                         <div class="card-content">
                             <span class="tag">Publicidad & Motion</span>
                             <h3>Flyer Bakery</h3>
-                            <p>Flyer promocional para redes sociales, animado para un emprendimiento de panadería.</p>
+                            <p>Flyer promocional para redes sociales, animado para un emprendimiento.</p>
                             <button class="btn-text toggle-btn">Ver caso de estudio</button>
                         </div>
                         <div class="card-details">
                             <h4>Proceso & Aprendizaje</h4>
-                            <p>Composición en Photoshop utilizando colores cálidos característicos del rubro y animación en After Effects para dotar a la pieza de dinamismo. Aprendí a manejar jerarquías para promocionar precios y productos de manera efectiva.</p>
+                            <p>Composición en Photoshop utilizando colores cálidos del rubro y animación en After Effects para dotar a la pieza de dinamismo. Aprendí a manejar jerarquías para promocionar productos efectivamente.</p>
                         </div>
                     </div>
 
@@ -127,17 +173,17 @@
         </section>
 
         <!-- SECCIÓN 4: En proceso -->
-        <section id="laboratorio" class="bg-light fade-in">
+        <section id="laboratorio" class="fade-in">
             <div class="container">
                 <h2 class="section-title">En proceso / Aprendizaje</h2>
                 <div class="grid-2-cols lab-grid">
-                    <div class="lab-card">
-                        <img src="https://picsum.photos/seed/3d/800/600" alt="Blender 3D" class="card-img small">
+                    <div class="lab-card glass-effect glass-padding">
+                        <img src="img/lab-3d.jpg" alt="Blender 3D" class="card-img small">
                         <h4>Diario de 3D</h4>
                         <p>Explorando modelado, materiales e iluminación en Blender para integrar elementos volumétricos a composiciones 2D.</p>
                     </div>
-                    <div class="lab-card">
-                        <img src="https://picsum.photos/seed/ui/800/600" alt="Figma UI" class="card-img small">
+                    <div class="lab-card glass-effect glass-padding">
+                        <img src="img/lab-ui.jpg" alt="Figma UI" class="card-img small">
                         <h4>Desafíos UI/Motion</h4>
                         <p>Experimentando con micro-interacciones, estados hover y prototipado avanzado directamente en Figma.</p>
                     </div>
@@ -147,21 +193,21 @@
 
         <!-- SECCIÓN 5: Contacto -->
         <section id="contacto" class="fade-in">
-            <div class="container form-container">
+            <div class="container form-container glass-effect glass-padding">
                 <h2>Hablemos</h2>
                 <p>Busco mi primera oportunidad full-time o proyectos freelance donde pueda aportar energía, técnica y seguir creciendo. ¡Escríbeme!</p>
                 
                 <form action="mailto:tuemail@ejemplo.com" method="post" enctype="text/plain">
-                    <input type="text" name="Nombre" placeholder="Tu Nombre" required>
-                    <input type="email" name="Email" placeholder="Tu Correo Electrónico" required>
-                    <textarea name="Mensaje" rows="5" placeholder="¿Cómo te puedo ayudar?" required></textarea>
+                    <input type="text" name="Nombre" placeholder="Tu Nombre" required class="glass-input">
+                    <input type="email" name="Email" placeholder="Tu Correo Electrónico" required class="glass-input">
+                    <textarea name="Mensaje" rows="5" placeholder="¿Cómo te puedo ayudar?" required class="glass-input"></textarea>
                     <button type="submit" class="btn-primary">Enviar Mensaje</button>
                 </form>
 
                 <div class="social-links">
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Behance</a>
-                    <a href="#">Instagram</a>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                    <a href="https://behance.net" target="_blank">Behance</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
                 </div>
             </div>
         </section>
@@ -170,7 +216,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2026 Alexis Agustin Rivero. Hecho con Figma y HTML.</p>
+            <p>© 2026 Alexis Agustin Rivero. Diseñado con pasión y mucha curiosidad.</p>
         </div>
     </footer>
 
