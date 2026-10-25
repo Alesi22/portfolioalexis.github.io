@@ -40,25 +40,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Acordeón para expandir Casos de Estudio en Cards
+    // 3. Casos de estudio independientes: solo cambia la tarjeta pulsada.
     const toggleButtons = document.querySelectorAll('.toggle-btn');
 
-    toggleButtons.forEach(btn => {
+    toggleButtons.forEach((btn, index) => {
+        const card = btn.closest('.card');
+        const details = card.querySelector('.card-details');
+        const detailsId = `project-details-${index + 1}`;
+
+        details.id = details.id || detailsId;
+        btn.setAttribute('aria-controls', details.id);
+        btn.setAttribute('aria-expanded', 'false');
+
         btn.addEventListener('click', function() {
-            const card = this.closest('.card');
-            const details = card.querySelector('.card-details');
-            
-            details.classList.toggle('open');
-            
-            if (details.classList.contains('open')) {
-                this.textContent = 'Ocultar detalles';
-            } else {
-                this.textContent = 'Ver caso de estudio';
-            }
+            const isOpen = details.classList.toggle('open');
+            this.textContent = isOpen ? 'Ocultar detalles' : 'Ver caso de estudio';
+            this.setAttribute('aria-expanded', String(isOpen));
         });
     });
 
-    // 4. Intersect Observer para animaciones fluidas
+    // 4. Slider independiente por proyecto, con fundido automático.
+    document.querySelectorAll('.project-slider').forEach(slider => {
+        const images = Array.from(slider.querySelectorAll('.slider-image'));
+        // Si algún archivo falta, lo quitamos de la galería para evitar un cuadro roto.
+        images.forEach(image => {
+            image.addEventListener('error', () => {
+                image.remove();
+            }, { once: true });
+        });
+
+        if (images.length < 2) return;
+
+        let currentIndex = 0;
+        const interval = Number(slider.dataset.interval) || 1500;
+
+        window.setInterval(() => {
+            const availableImages = Array.from(slider.querySelectorAll('.slider-image'));
+            if (availableImages.length < 2) return;
+            const activeIndex = availableImages.findIndex(image => image.classList.contains('is-active'));
+            const safeIndex = activeIndex < 0 ? 0 : activeIndex;
+            const nextIndex = (safeIndex + 1) % availableImages.length;
+            availableImages[safeIndex].classList.remove('is-active');
+            availableImages[nextIndex].classList.add('is-active');
+        }, interval);
+    });
+
+    // 5. Intersect Observer para animaciones fluidas
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {
