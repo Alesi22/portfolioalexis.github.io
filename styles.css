@@ -76,7 +76,10 @@ h1 { font-weight: 800; }
 h2 { font-weight: 700; }
 a { text-decoration: none; color: var(--text-main); transition: color 0.3s; }
 a:hover { color: var(--accent); }
-
+.logo {
+    font-family: 'Lobster', cursive;
+    font-weight: 400; /* Lobster suele verse mejor en su peso normal */
+}
 /* --- Utilidades Generales --- */
 .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 section { padding: 6rem 0; }
