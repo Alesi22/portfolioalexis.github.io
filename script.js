@@ -4,15 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = themeBtn.querySelector('.theme-icon-img');
     
-    // Al cargar la página, revisa qué tema está guardado
     if (localStorage.getItem('theme') === 'light') {
         document.body.classList.add('light-theme');
-        themeIcon.src = 'img/luna.png'; // En modo claro mostramos la luna
+        themeIcon.src = 'img/luna.png'; 
     } else {
-        themeIcon.src = 'img/sol.png'; // En modo oscuro mostramos el sol
+        themeIcon.src = 'img/sol.png'; 
     }
 
-    // Al hacer clic en el botón
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
         
@@ -40,145 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Casos de estudio independientes: solo cambia la tarjeta pulsada.
+    // 3. Acordeón para expandir Casos de Estudio en Cards
     const toggleButtons = document.querySelectorAll('.toggle-btn');
 
-    toggleButtons.forEach((btn, index) => {
-        const card = btn.closest('.card');
-        const details = card.querySelector('.card-details');
-        const detailsId = `project-details-${index + 1}`;
-
-        details.id = details.id || detailsId;
-        btn.setAttribute('aria-controls', details.id);
-        btn.setAttribute('aria-expanded', 'false');
-
+    toggleButtons.forEach(btn => {
         btn.addEventListener('click', function() {
-            const isOpen = details.classList.toggle('open');
-            this.textContent = isOpen ? 'Ocultar detalles' : 'Ver caso de estudio';
-            this.setAttribute('aria-expanded', String(isOpen));
+            const card = this.closest('.card');
+            const details = card.querySelector('.card-details');
+            
+            details.classList.toggle('open');
+            
+            if (details.classList.contains('open')) {
+                this.textContent = 'Ocultar detalles';
+            } else {
+                this.textContent = 'Ver caso de estudio';
+            }
         });
     });
 
-    // 4. Slider elegante e independiente por proyecto: autoplay lento, flechas, puntos y pausa.
-    document.querySelectorAll('.project-slider').forEach((slider, sliderIndex) => {
-        const allImages = Array.from(slider.querySelectorAll('.slider-image'));
-
-        // Elimina imágenes que no se pudieron cargar y evita mostrar iconos rotos.
-        allImages.forEach(image => {
-            const removeIfBroken = () => {
-                if (!image.naturalWidth) {
-                    const wasActive = image.classList.contains('is-active');
-                    image.remove();
-                    if (wasActive) {
-                        const first = slider.querySelector('.slider-image');
-                        if (first) first.classList.add('is-active');
-                    }
-                }
-            };
-            if (image.complete) removeIfBroken();
-            else image.addEventListener('error', () => image.remove(), { once: true });
-        });
-
-        const images = Array.from(slider.querySelectorAll('.slider-image'));
-        if (images.length < 2) return;
-
-        slider.setAttribute('role', 'region');
-        slider.setAttribute('aria-roledescription', 'carrusel');
-        slider.setAttribute('tabindex', '0');
-
-        let currentIndex = Math.max(0, images.findIndex(image => image.classList.contains('is-active')));
-        let timer = null;
-        const interval = Math.max(3500, Number(slider.dataset.interval) || 4500);
-
-        const controls = document.createElement('div');
-        controls.className = 'slider-controls';
-        controls.setAttribute('aria-label', 'Controles de la galería');
-
-        const previous = document.createElement('button');
-        previous.className = 'slider-arrow slider-arrow--prev';
-        previous.type = 'button';
-        previous.setAttribute('aria-label', 'Ver imagen anterior');
-        previous.innerHTML = '<span aria-hidden="true">&#8249;</span>';
-
-        const next = document.createElement('button');
-        next.className = 'slider-arrow slider-arrow--next';
-        next.type = 'button';
-        next.setAttribute('aria-label', 'Ver imagen siguiente');
-        next.innerHTML = '<span aria-hidden="true">&#8250;</span>';
-
-        const pagination = document.createElement('div');
-        pagination.className = 'slider-pagination';
-        pagination.setAttribute('aria-label', 'Elegir imagen');
-        const dots = images.map((image, index) => {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'slider-dot';
-            dot.setAttribute('aria-label', `Mostrar imagen ${index + 1} de ${images.length}`);
-            dot.addEventListener('click', () => showImage(index, true));
-            pagination.appendChild(dot);
-            return dot;
-        });
-
-        controls.append(previous, pagination, next);
-        slider.appendChild(controls);
-
-        function showImage(index, userInitiated = false) {
-            const nextIndex = (index + images.length) % images.length;
-            images[currentIndex].classList.remove('is-active');
-            images[nextIndex].classList.add('is-active');
-            currentIndex = nextIndex;
-            dots.forEach((dot, dotIndex) => {
-                const active = dotIndex === currentIndex;
-                dot.classList.toggle('is-active', active);
-                if (active) dot.setAttribute('aria-current', 'true');
-                else dot.removeAttribute('aria-current');
-            });
-            if (userInitiated) restartAutoplay();
-        }
-
-        function stopAutoplay() {
-            if (timer) window.clearInterval(timer);
-            timer = null;
-        }
-        function startAutoplay() {
-            stopAutoplay();
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            timer = window.setInterval(() => showImage(currentIndex + 1), interval);
-        }
-        function restartAutoplay() {
-            startAutoplay();
-        }
-
-        previous.addEventListener('click', () => showImage(currentIndex - 1, true));
-        next.addEventListener('click', () => showImage(currentIndex + 1, true));
-        slider.addEventListener('mouseenter', stopAutoplay);
-        slider.addEventListener('mouseleave', startAutoplay);
-        slider.addEventListener('focusin', stopAutoplay);
-        slider.addEventListener('focusout', event => {
-            if (!slider.contains(event.relatedTarget)) startAutoplay();
-        });
-        slider.addEventListener('keydown', event => {
-            if (event.key === 'ArrowLeft') { event.preventDefault(); showImage(currentIndex - 1, true); }
-            if (event.key === 'ArrowRight') { event.preventDefault(); showImage(currentIndex + 1, true); }
-        });
-
-        // Gesto táctil para avanzar con un deslizamiento en móviles.
-        let touchStartX = null;
-        slider.addEventListener('touchstart', event => {
-            touchStartX = event.changedTouches[0].clientX;
-        }, { passive: true });
-        slider.addEventListener('touchend', event => {
-            if (touchStartX === null) return;
-            const deltaX = event.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(deltaX) > 45) showImage(currentIndex + (deltaX < 0 ? 1 : -1), true);
-            touchStartX = null;
-        }, { passive: true });
-
-        showImage(currentIndex);
-        startAutoplay();
-    });
-
-    // 5. Intersect Observer para animaciones fluidas
+    // 4. Intersect Observer para animaciones fluidas
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -199,3 +77,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// 5. Lógica del Slider de Imágenes (Función Global para el onclick)
+window.moveSlide = function(n, button) {
+    // Busca el contenedor específico de este slider (por si hay más de uno)
+    const container = button.closest('.slider-container');
+    const slides = container.querySelectorAll('.slide');
+    
+    // Encuentra qué imagen está activa ahora mismo
+    let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+    
+    // Oculta la actual
+    slides[currentIndex].classList.remove('active');
+    
+    // Calcula el nuevo índice
+    currentIndex += n;
+    
+    // Logica de ciclo infinito
+    if (currentIndex >= slides.length) {
+        currentIndex = 0;
+    } else if (currentIndex < 0) {
+        currentIndex = slides.length - 1;
+    }
+    
+    // Muestra la nueva
+    slides[currentIndex].classList.add('active');
+};

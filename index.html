@@ -70,12 +70,11 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: Herramientas -->
+        <!-- SECCIÓN: Herramientas -->
         <section id="herramientas" class="fade-in">
             <div class="container">
                 <h2 class="section-title">Mi Ecosistema de Trabajo</h2>
                 <div class="tools-grid">
-                    <!-- Iconos de Software minimalistas (estilo cuadro) -->
                     <div class="tool-card glass-effect">
                         <div class="tool-icon">Fg</div>
                         <span>Figma</span>
@@ -118,16 +117,20 @@
                 <h2 class="section-title fade-in">Mis Proyectos</h2>
                 <div class="grid-3-cols">
                     
-                    <!-- Card 1 -->
+                    <!-- Card 1 (STREAM PACK - 7 Imágenes) -->
                     <div class="card glass-effect fade-in">
-                        <div class="project-slider" data-interval="5500" aria-label="Galería de Stream Pack">
-                            <img src="img/stream-pack-1.jpg" alt="Stream Pack, imagen 1" class="card-img slider-image is-active">
-                            <img src="img/stream-pack-2.jpg" alt="Stream Pack, imagen 2" class="card-img slider-image">
-                            <img src="img/stream-pack-3.jpg" alt="Stream Pack, imagen 3" class="card-img slider-image">
-                            <img src="img/stream-pack-4.jpg" alt="Stream Pack, imagen 4" class="card-img slider-image">
-                            <img src="img/stream-pack-5.jpg" alt="Stream Pack, imagen 5" class="card-img slider-image">
-                            <img src="img/stream-pack-6.jpg" alt="Stream Pack, imagen 6" class="card-img slider-image">
-                            <img src="img/stream-pack-7.jpg" alt="Stream Pack, imagen 7" class="card-img slider-image">
+                        <div class="slider-container card-img">
+                            <div class="slider-wrapper">
+                                <img src="img/stream-pack-1.jpg" class="slide active" alt="Stream Pack Diseño">
+                                <img src="img/stream-pack-2.jpg" class="slide" alt="Stream Pack Paneles">
+                                <img src="img/stream-pack-3.jpg" class="slide" alt="Stream Comenzando">
+                                <img src="img/stream-pack-4.jpg" class="slide" alt="Stream Pausa">
+                                <img src="img/stream-pack-5.jpg" class="slide" alt="Stream Finalizado">
+                                <img src="img/stream-pack-6.jpg" class="slide" alt="Stream Overlay">
+                                <img src="img/stream-pack-7.jpg" class="slide" alt="Stream Header">
+                            </div>
+                            <button class="prev-arrow" onclick="moveSlide(-1, this)">&#10094;</button>
+                            <button class="next-arrow" onclick="moveSlide(1, this)">&#10095;</button>
                         </div>
                         <div class="card-content">
                             <span class="tag">UI/UX & Motion</span>
@@ -143,11 +146,15 @@
                         </div>
                     </div>
 
-                    <!-- Card 2 -->
+                    <!-- Card 2 (GREENY - 2 Imágenes) -->
                     <div class="card glass-effect fade-in">
-                        <div class="project-slider" data-interval="5500" aria-label="Galería de Greenny Indu">
-                            <img src="img/greeny-indu-1.jpg" alt="Greenny Indu, imagen 1" class="card-img slider-image is-active">
-                            <img src="img/greeny-indu-2.jpg" alt="Greenny Indu, imagen 2" class="card-img slider-image">
+                        <div class="slider-container card-img">
+                            <div class="slider-wrapper">
+                                <img src="img/greeny-indu-1.jpg" class="slide active" alt="Greeny Bolsa">
+                                <img src="img/greeny-indu-2.jpg" class="slide" alt="Greeny Buzo">
+                            </div>
+                            <button class="prev-arrow" onclick="moveSlide(-1, this)">&#10094;</button>
+                            <button class="next-arrow" onclick="moveSlide(1, this)">&#10095;</button>
                         </div>
                         <div class="card-content">
                             <span class="tag">Branding</span>
@@ -161,20 +168,22 @@
                         </div>
                     </div>
 
-                    <!-- Card 3 -->
+                    <!-- Card 3 (FLYER - 1 Imagen, sin flechas) -->
                     <div class="card glass-effect fade-in">
-                        <div class="project-slider" data-interval="5500" aria-label="Galería de Flyer Bakery">
-                            <img src="img/flyer-santi.jpg" alt="Flyer promocional de Santi" class="card-img slider-image is-active">
+                        <div class="slider-container card-img">
+                            <div class="slider-wrapper">
+                                <img src="img/flyer-santi.jpg" class="slide active" alt="Flyer Santi">
+                            </div>
                         </div>
                         <div class="card-content">
                             <span class="tag">Publicidad & Motion</span>
-                            <h3>Flyer Bakery</h3>
-                            <p>Flyer promocional para redes sociales, animado para un emprendimiento.</p>
+                            <h3>Flyer Bakery & Eventos</h3>
+                            <p>Diseño de flyers promocionales para redes sociales, adaptados a diferentes rubros.</p>
                             <button class="btn-text toggle-btn">Ver caso de estudio</button>
                         </div>
                         <div class="card-details">
                             <h4>Proceso & Aprendizaje</h4>
-                            <p>Composición en Photoshop utilizando colores cálidos del rubro y animación en After Effects para dotar a la pieza de dinamismo. Aprendí a manejar jerarquías para promocionar productos efectivamente.</p>
+                            <p>Composición en Photoshop utilizando colores específicos del rubro y animación en After Effects para dotar a la pieza de dinamismo. Aprendí a manejar jerarquías para promocionar eventos y productos efectivamente.</p>
                         </div>
                     </div>
 
@@ -230,6 +239,7 @@
         </div>
     </footer>
 
+    <!-- ¡Importante! Revisa que el nombre de tu archivo JS coincida (aquí dice script.js pero me compartiste script_3.js) -->
     <script src="script.js"></script>
 </body>
 </html>
