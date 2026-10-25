@@ -231,17 +231,21 @@ body.light-theme .hero-content h1 span { background: none; -webkit-text-fill-col
     position: relative;
 }
 .slide {
-    display: none;
+    /* En lugar de display: none, usamos opacidad y visibilidad para que el fade funcione */
+    opacity: 0;
+    visibility: hidden;
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
     position: absolute;
     top: 0;
     left: 0;
 }
+
 .slide.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 .prev-arrow, .next-arrow {
     cursor: pointer;
