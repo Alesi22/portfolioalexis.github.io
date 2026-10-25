@@ -99,7 +99,40 @@ window.moveSlide = function(n, button) {
     } else if (currentIndex < 0) {
         currentIndex = slides.length - 1;
     }
-    
     // Muestra la nueva
     slides[currentIndex].classList.add('active');
 };
+// 6. Lógica del Slider Automático (Fade cada 3 segundos)
+    const sliders = document.querySelectorAll('.slider-container');
+    
+    sliders.forEach(container => {
+        const slides = container.querySelectorAll('.slide');
+        
+        // Si el slider tiene 1 sola imagen (como tu flyer), no hacemos nada
+        if (slides.length <= 1) return; 
+
+        let interval;
+
+        const autoSlide = () => {
+            let currentIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+            slides[currentIndex].classList.remove('active');
+            
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+                currentIndex = 0;
+            }
+            
+            slides[currentIndex].classList.add('active');
+        };
+
+        // Cambiar imagen cada 3000 milisegundos (3 segundos)
+        interval = setInterval(autoSlide, 3000);
+
+        // Opcional: Pausar el slider si el usuario pone el mouse encima para leer/ver bien
+        container.addEventListener('mouseenter', () => clearInterval(interval));
+        
+        // Reanudar cuando saca el mouse
+        container.addEventListener('mouseleave', () => {
+            interval = setInterval(autoSlide, 3000);
+        });
+    });
