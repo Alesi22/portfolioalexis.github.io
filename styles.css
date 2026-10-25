@@ -763,3 +763,56 @@ body.light-theme .hero-content h1 span {
     .slider-dot { width: 5px; height: 5px; }
     .slider-dot.is-active { width: 17px; }
 }
+
+
+/* --- Ajuste de animaciones: reveal y hover no compiten por transform --- */
+/* El reveal de las cards usa la propiedad individual translate; así el hover
+   puede seguir usando transform sin anular la animación de entrada. */
+.card.fade-in {
+    transform: none;
+    translate: 0 40px;
+    transition:
+        opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+        translate 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 420ms ease;
+}
+.card.fade-in.visible {
+    opacity: 1;
+    translate: 0 0;
+    transform: none;
+}
+.card.fade-in:hover,
+.card.fade-in.visible:hover {
+    transform: translateY(-8px);
+}
+
+/* Entrada escalonada y discreta de las cards de proyectos. */
+#proyectos .grid-3-cols > .card.fade-in:nth-child(1) { transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms; }
+#proyectos .grid-3-cols > .card.fade-in:nth-child(2) { transition-delay: 100ms, 100ms, 0ms, 0ms, 0ms; }
+#proyectos .grid-3-cols > .card.fade-in:nth-child(3) { transition-delay: 200ms, 200ms, 0ms, 0ms, 0ms; }
+
+/* Fundido del slider suave y con movimiento mínimo, sin afectar el resto del sitio. */
+.project-slider .slider-image {
+    transition:
+        opacity 1250ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 5600ms cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1250ms ease,
+        visibility 0s linear 1250ms;
+}
+.project-slider .slider-image.is-active {
+    transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card.fade-in,
+    .card.fade-in.visible,
+    .card.fade-in:hover,
+    .card.fade-in.visible:hover {
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+        translate: none;
+        transform: none;
+    }
+}
