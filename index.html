@@ -3,243 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexis Agustin Rivero | Diseñador Digital Junior</title>
-    
-    <!-- Google Fonts: Montserrat (Títulos/Navegación) e Inter (Textos) -->
+    <title>Alexis Agustin Rivero · Diseñador digital</title>
+    <meta name="description" content="Portfolio de Alexis Agustin Rivero, diseñador digital en San Luis, Argentina. Identidad visual, interfaces y motion graphics.">
+    <meta name="theme-color" content="#E7E5DE">
+    <meta name="color-scheme" content="light dark">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alexis Agustin Rivero · Diseñador digital">
+    <meta property="og:description" content="Identidad visual, interfaces y motion graphics. Portfolio de Alexis Agustin Rivero, San Luis, Argentina.">
+    <meta property="og:image" content="img/opt/og.jpg">
+    <meta property="og:locale" content="es_AR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" type="image/png" href="img/opt/favicon-64.png">
+    <link rel="apple-touch-icon" href="img/opt/apple-touch-icon.png">
+
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var metaTheme = document.querySelector('meta[name="theme-color"]');
+            var metaScheme = document.querySelector('meta[name="color-scheme"]');
+            var params = new URLSearchParams(window.location.search);
+            var storedTheme = null;
+            var storedMotion = false;
+
+            try {
+                storedTheme = localStorage.getItem('theme');
+                storedMotion = localStorage.getItem('motion') === 'on';
+                if (params.has('motion')) {
+                    localStorage.setItem('motion', 'on');
+                    storedMotion = true;
+                }
+            } catch (error) {}
+
+            var theme = (storedTheme === 'light' || storedTheme === 'dark')
+                ? storedTheme
+                : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+            root.setAttribute('data-theme', theme);
+            root.classList.add('js');
+
+            if (metaTheme) {
+                metaTheme.setAttribute('content', theme === 'dark' ? '#15101B' : '#E7E5DE');
+            }
+
+            if (metaScheme) {
+                metaScheme.setAttribute(
+                    'content',
+                    (storedTheme === 'light' || storedTheme === 'dark') ? theme : 'light dark'
+                );
+            }
+
+            if (params.has('motion') || storedMotion) {
+                root.classList.add('force-motion');
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css?v=20261027m">
 </head>
 <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
 
-    <!-- FONDO ANIMADO TIPOGRÁFICO -->
-    <div class="animated-bg">
-        <div class="bg-text text-1">CREATIVE</div>
-        <div class="bg-text text-2">DESIGN</div>
-    </div>
+    <noscript>
+        <p class="noscript">Este portfolio usa JavaScript para el carrusel y el scroll animado. Activalo para verlo completo.</p>
+    </noscript>
 
-   <!-- Navegación -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="#hero" class="logo"><span class="logo">Alexis</span></a>
-            <nav class="nav-links">
-                <a href="#sobre-mi">Sobre mí</a>
-                <a href="#herramientas">Herramientas</a>
-                <a href="#proyectos">Proyectos</a>
-                <a href="#laboratorio">En proceso</a>
-                <a href="#contacto" class="btn-contacto">Contacto</a>
-            </nav>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-                    <img src="img/sol.png" alt="Icono de tema" class="theme-icon-img">
+    <header class="topbar">
+        <div class="wrap topbar__inner">
+            <a class="brand" href="#top" aria-label="Alexis Rivero, volver al inicio">
+                <img class="brand__logo brand__logo--light" src="img/opt/logo-color.webp" width="285" height="360" alt="">
+                <img class="brand__logo brand__logo--dark" src="img/opt/logo-white.webp" width="284" height="360" alt="">
+                <span class="brand__name">Alexis Rivero</span>
+            </a>
+
+            <div class="nav-cluster">
+                <nav class="nav" id="nav" aria-label="Principal">
+                    <a href="#trabajo">Trabajo</a>
+                    <a href="#sobre-mi">Sobre mí</a>
+                    <a href="#herramientas">Herramientas</a>
+                    <a href="#proceso">En proceso</a>
+                    <a class="nav__cta" href="#contacto">Contacto <span aria-hidden="true">↗</span></a>
+                </nav>
+
+                <button class="theme-toggle" type="button" aria-label="Cambiar tema">
+                    <span class="theme-toggle__dot" aria-hidden="true"></span>
+                    <span class="theme-toggle__label" aria-hidden="true">
+                        <span class="theme-toggle__when-light">Noche</span>
+                        <span class="theme-toggle__when-dark">Día</span>
+                    </span>
                 </button>
-                <button class="menu-toggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+
+                <button class="navbtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+                    <span></span><span></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- SECCIÓN 1: Hero -->
-        <section id="hero" class="fade-in">
-            <div class="container hero-content">
-                <div class="hero-glass-box">
-                    <h1>Hola, soy <span>Alexis Agustin Rivero</span></h1>
-                    <h2>Diseñador Digital Junior</h2>
-                    <p>Construyendo sistemas visuales y experiencias digitales con curiosidad, técnica y muchas ganas de aprender.</p>
-                    <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+    <main id="main" tabindex="-1">
+        <!-- HERO -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="wrap hero__inner">
+                <div class="hero__meta">
+                    <p class="eyebrow">Diseñador digital · Portfolio 2026</p>
+                    <p class="eyebrow hero__status"><span class="status-dot" aria-hidden="true"></span> Disponible para trabajar</p>
+                </div>
+
+                <h1 class="hero__name display" id="hero-title">
+                    <span class="line"><span>Alexis</span></span>
+                    <span class="line"><span>Agustin</span></span>
+                    <span class="line"><span>Rivero</span></span>
+                </h1>
+
+                <div class="hero__foot">
+                    <p class="hero__intro">Diseño identidades, interfaces y piezas en movimiento. Estudio Diseño Digital y Videojuegos en la Universidad de La Punta, San Luis.</p>
+                    <div class="hero__actions">
+                        <a class="link-arrow" href="#trabajo">Ver trabajo <span aria-hidden="true">↓</span></a>
+                        <a class="link-arrow" href="#contacto">Escribime <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sheet" aria-label="Trabajos seleccionados">
+                <a class="sheet__tile sheet__tile--stream" href="#stream">
+                    <img src="img/opt/thumb-stream.webp" width="700" height="394" alt="Paleta y logo del stream pack de Tuty_s2" fetchpriority="high" decoding="async">
+                    <span class="sheet__label"><span>Stream Pack Overlays</span><span class="mono">UI/UX · Motion</span></span>
+                </a>
+                <a class="sheet__tile sheet__tile--greeny" href="#greeny">
+                    <img src="img/opt/thumb-greeny.webp" width="560" height="840" alt="Bolsa de tela con la identidad de Greeny Indu" decoding="async">
+                    <span class="sheet__label"><span>Greeny Indu</span><span class="mono">Branding</span></span>
+                </a>
+                <a class="sheet__tile sheet__tile--flyer" href="#flyer">
+                    <img src="img/opt/thumb-flyer.webp" width="420" height="747" alt="Flyer de venta de panes caseros" decoding="async">
+                    <span class="sheet__label"><span>Flyer Bakery</span><span class="mono">Publicidad · Motion</span></span>
+                </a>
+            </nav>
+        </section>
+
+        <!-- INTRO AL TRABAJO -->
+        <section class="intro" id="trabajo" aria-labelledby="trabajo-title">
+            <div class="wrap intro__grid">
+                <p class="eyebrow">Selección · 3 piezas</p>
+                <h2 class="intro__title display" id="trabajo-title" data-reveal>Tres piezas.<br>Tres problemas.</h2>
+                <p class="intro__body" data-reveal>Identidad, interfaz y movimiento. En cada proyecto cambia el rubro, el formato y la herramienta. Lo que no cambia es el criterio con el que se arma cada pieza.</p>
+            </div>
+        </section>
+
+        <!-- PROYECTO 1 -->
+        <section class="project project--stream" id="stream" aria-labelledby="stream-title">
+            <div class="wrap">
+                <header class="project__head" data-reveal>
+                    <p class="eyebrow">UI/UX · Motion · Illustrator, Photoshop, After Effects</p>
+                    <h2 class="project__title display" id="stream-title">Stream Pack Overlays</h2>
+                    <div class="project__grid">
+                        <p class="project__lead">Un ecosistema visual completo para el stream de Tuty_s2: paleta, logo, paneles y pantallas de estado. Diseñado para acompañar el gameplay, no para competir con él.</p>
+                        <dl class="facts">
+                            <div class="facts__row"><dt>Rol</dt><dd>Identidad, UI y motion</dd></div>
+                            <div class="facts__row"><dt>Entregables</dt><dd>Logo, paleta, 7 piezas y animaciones</dd></div>
+                            <div class="facts__row"><dt>Contexto</dt><dd>Primer proyecto con requerimientos reales</dd></div>
+                        </dl>
+                    </div>
+                </header>
+            </div>
+
+            <div class="coverflow" data-coverflow>
+                <div class="coverflow__viewport">
+                    <div class="coverflow__stage" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Piezas del Stream Pack. Usá las flechas o arrastrá para navegar.">
+                        <figure class="cover-slide" data-state="active" data-label="Paleta y logo">
+                            <img src="img/opt/stream-1.webp" width="1600" height="900" alt="Paleta de colores y logo de Tuty_s2 sobre fondo azul" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Paneles">
+                            <img src="img/opt/stream-2.webp" width="1600" height="900" alt="Paneles de información del stream" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Comenzando">
+                            <img src="img/opt/stream-3.webp" width="1600" height="900" alt="Pantalla de inicio de transmisión" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Pausa">
+                            <img src="img/opt/stream-4.webp" width="1600" height="900" alt="Pantalla de pausa de la transmisión" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Finalizado">
+                            <img src="img/opt/stream-5.webp" width="1600" height="900" alt="Pantalla de fin de transmisión" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Overlay">
+                            <img src="img/opt/stream-6.webp" width="1600" height="900" alt="Overlay para cámara y alertas" loading="lazy" decoding="async">
+                        </figure>
+                        <figure class="cover-slide" data-state="far" data-label="Header">
+                            <img src="img/opt/stream-7.webp" width="1600" height="900" alt="Encabezado y banner del canal" loading="lazy" decoding="async">
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="wrap reel-nav">
+                    <p class="mono reel-count"><span data-count>01</span> / 07</p>
+                    <p class="mono cover-caption" data-caption aria-live="polite">Paleta y logo</p>
+                    <div class="reel-progress" aria-hidden="true"><span data-progress></span></div>
+                    <div class="reel-buttons">
+                        <button class="circle-btn" type="button" data-dir="-1" aria-label="Pieza anterior">←</button>
+                        <button class="circle-btn" type="button" data-dir="1" aria-label="Pieza siguiente">→</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap project__note" data-reveal>
+                <div>
+                    <p class="eyebrow">Proceso</p>
+                    <p>Entrevista de paleta y referencias, tres conceptos, vectorización en Illustrator, UI en Photoshop y animación en After Effects. La regla fue simple: nada que tape el gameplay.</p>
+                </div>
+                <a class="next" href="#greeny">
+                    <span class="eyebrow">Siguiente</span>
+                    <span class="next__title">Greeny Indu →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PROYECTO 2 -->
+        <section class="project project--greeny" id="greeny" aria-labelledby="greeny-title">
+            <div class="wrap">
+                <header class="project__head" data-reveal>
+                    <p class="eyebrow">Branding · Illustrator, Photoshop</p>
+                    <h2 class="project__title display" id="greeny-title">Greeny Indu</h2>
+                    <div class="project__grid">
+                        <p class="project__lead">Identidad visual e indumentaria para una marca ficticia de ropa. Un sistema que tiene que funcionar igual en una bolsa de tela que en un buzo.</p>
+                        <dl class="facts">
+                            <div class="facts__row"><dt>Rol</dt><dd>Identidad y mockups</dd></div>
+                            <div class="facts__row"><dt>Entregables</dt><dd>Marca, aplicaciones y presentación</dd></div>
+                            <div class="facts__row"><dt>Contexto</dt><dd>Trabajo integrador universitario</dd></div>
+                        </dl>
+                    </div>
+                </header>
+            </div>
+
+            <div class="wrap diptych">
+                <figure class="shot shot--tall" data-reveal>
+                    <img src="img/opt/greeny-1.webp" width="1200" height="1800" alt="Bolsa de tela blanca con el logo de Greeny Bag" loading="lazy" decoding="async">
+                    <figcaption><span class="mono">A</span> Bolsa · aplicación principal</figcaption>
+                </figure>
+                <figure class="shot shot--tall" data-reveal>
+                    <img src="img/opt/greeny-2.webp" width="1200" height="1800" alt="Buzo con la identidad de Greeny Indu" loading="lazy" decoding="async">
+                    <figcaption><span class="mono">B</span> Buzo · indumentaria</figcaption>
+                </figure>
+            </div>
+
+            <div class="wrap project__note" data-reveal>
+                <div>
+                    <p class="eyebrow">Proceso</p>
+                    <p>Análisis de identidad, definición del sistema gráfico y mockups realistas en Photoshop para la presentación de marca. El desafío fue sostener la misma personalidad en soportes muy distintos.</p>
+                </div>
+                <a class="next" href="#flyer">
+                    <span class="eyebrow">Siguiente</span>
+                    <span class="next__title">Flyer Bakery →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PROYECTO 3 -->
+        <section class="project project--flyer" id="flyer" aria-labelledby="flyer-title">
+            <div class="wrap">
+                <header class="project__head" data-reveal>
+                    <p class="eyebrow">Publicidad · Motion · Photoshop, After Effects</p>
+                    <h2 class="project__title display" id="flyer-title">Flyer Bakery &amp; Eventos</h2>
+                </header>
+
+                <div class="flyer">
+                    <div class="flyer__copy" data-reveal>
+                        <p class="project__lead">Piezas promocionales para redes, adaptadas al rubro y al formato. Acá el requisito no era lucirse: era que se entienda el producto, el precio y cómo comprar.</p>
+                        <ol class="steps">
+                            <li><span class="mono">01</span><span>Paleta cálida tomada del rubro: pan, horno, materia prima.</span></li>
+                            <li><span class="mono">02</span><span>Jerarquía clara: producto, precio, contacto y envío.</span></li>
+                            <li><span class="mono">03</span><span>Movimiento en After Effects para que la pieza funcione en feed y en story.</span></li>
+                        </ol>
+                    </div>
+                    <figure class="shot shot--flyer" data-reveal>
+                        <img src="img/opt/flyer.webp" width="1080" height="1920" alt="Flyer vertical de venta de panes caseros con precios y contacto" loading="lazy" decoding="async">
+                        <figcaption><span class="mono">Pieza</span> Feed · 1080 × 1920</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="wrap project__note" data-reveal>
+                <div>
+                    <p class="eyebrow">Aprendizaje</p>
+                    <p>Componer en Photoshop con colores específicos del rubro y animar en After Effects para darle dinamismo. Ahí entendí que la jerarquía no es decoración: es lo que hace que alguien encuentre el precio.</p>
+                </div>
+                <a class="next" href="#sobre-mi">
+                    <span class="eyebrow">Siguiente</span>
+                    <span class="next__title">Sobre mí →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- SOBRE MÍ -->
+        <section class="about" id="sobre-mi" aria-labelledby="about-title">
+            <div class="wrap about__grid">
+                <figure class="portrait" data-reveal>
+                    <img src="img/opt/perfil.webp" width="800" height="800" alt="Retrato de Alexis Agustin Rivero" loading="lazy" decoding="async">
+                    <figcaption class="mono">Alexis Agustin Rivero · San Luis, Argentina</figcaption>
+                </figure>
+
+                <div class="about__text">
+                    <p class="eyebrow" data-reveal>Perfil</p>
+                    <h2 class="about__title display" id="about-title" data-reveal>Me interesa el porqué antes del cómo.</h2>
+                    <p data-reveal>Soy estudiante avanzado de la Tecnicatura en Diseño Digital y Videojuegos en la Universidad de La Punta. Elegí el diseño porque me gusta construir sistemas visuales que funcionen y cuenten una historia: una interfaz, una marca o una pieza en movimiento.</p>
+                    <p data-reveal>Hoy cruzo Blender con la suite de Adobe para ampliar el rango. Me interesa entender qué sostiene cada decisión estética: por qué este peso, por qué este color, por qué este orden.</p>
+
+                    <dl class="now" data-reveal>
+                        <div><dt>Cursando</dt><dd>Tecnicatura en Diseño Digital y Videojuegos, Universidad de La Punta.</dd></div>
+                        <div><dt>Explorando</dt><dd>Blender: modelado, materiales e iluminación.</dd></div>
+                        <div><dt>Buscando</dt><dd>Primera oportunidad full-time o proyectos freelance.</dd></div>
+                    </dl>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: Sobre mí -->
-        <section id="sobre-mi" class="fade-in">
-            <div class="container grid-2-cols">
-                <img src="img/perfil.png" alt="Foto de perfil de Alexis" class="profile-img glass-effect">
-                
-                <div class="about-text glass-effect glass-padding">
-                    <h2>Sobre mí</h2>
-                    <p>Soy un estudiante avanzado de la Tecnicatura en Diseño Digital y Videojuegos en la Universidad de La Punta. Elegí el diseño porque me fascina construir sistemas visuales que funcionen y cuenten una historia, ya sea a través de una interfaz, el branding o el movimiento.</p>
-                    <p>Me motiva entender el "por qué" detrás de cada decisión estética, y actualmente dedico mi tiempo a cruzar herramientas como Blender y la suite de Adobe para expandir mis capacidades creativas.</p>
+        <!-- HERRAMIENTAS -->
+        <section class="tools" id="herramientas" aria-labelledby="tools-title">
+            <div class="wrap">
+                <div class="tools__head" data-reveal>
+                    <p class="eyebrow">Stack</p>
+                    <h2 class="tools__title display" id="tools-title">Herramientas</h2>
+                    <p class="tools__intro">Las que uso todos los días, y para qué. Sin logos ni barras de nivel: lo que importa es la pieza terminada.</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- SECCIÓN: Herramientas -->
-        <section id="herramientas" class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Mi Ecosistema de Trabajo</h2>
-                <div class="tools-grid">
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Fg</div>
-                        <span>Figma</span>
+                <div class="stack">
+                    <div class="stack__group" data-reveal>
+                        <h3 class="eyebrow">Interfaz</h3>
+                        <ul>
+                            <li><strong>Figma</strong><span>UI, prototipos y sistemas</span></li>
+                            <li><strong>Canva</strong><span>Piezas rápidas para redes</span></li>
+                        </ul>
                     </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Ps</div>
-                        <span>Photoshop</span>
+                    <div class="stack__group" data-reveal>
+                        <h3 class="eyebrow">Vector e identidad</h3>
+                        <ul>
+                            <li><strong>Illustrator</strong><span>Logos, vector y sistemas gráficos</span></li>
+                            <li><strong>Affinity</strong><span>Composición y vector</span></li>
+                            <li><strong>Corel</strong><span>Edición vectorial alternativa</span></li>
+                        </ul>
                     </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Ai</div>
-                        <span>Illustrator</span>
+                    <div class="stack__group" data-reveal>
+                        <h3 class="eyebrow">Imagen</h3>
+                        <ul>
+                            <li><strong>Photoshop</strong><span>Composición, mockups y retoque</span></li>
+                            <li><strong>GIMP</strong><span>Edición de imagen alternativa</span></li>
+                        </ul>
                     </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Ae</div>
-                        <span>After Effects</span>
-                    </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Bl</div>
-                        <span>Blender</span>
-                    </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Cv</div>
-                        <span>Canvas / Canva</span>
-                    </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Af</div>
-                        <span>Affinity</span>
-                    </div>
-                    <div class="tool-card glass-effect">
-                        <div class="tool-icon">Cr</div>
-                        <span>Corel / GIMP</span>
+                    <div class="stack__group" data-reveal>
+                        <h3 class="eyebrow">Movimiento y 3D</h3>
+                        <ul>
+                            <li><strong>After Effects</strong><span>Motion graphics</span></li>
+                            <li><strong>Blender</strong><span>3D, materiales e iluminación</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: Proyectos -->
-        <section id="proyectos">
-            <div class="container">
-                <h2 class="section-title fade-in">Mis Proyectos</h2>
-                <div class="grid-3-cols">
-                    
-                    <!-- Card 1 (STREAM PACK - 7 Imágenes) -->
-                    <div class="card glass-effect fade-in">
-                        <div class="slider-container card-img">
-                            <div class="slider-wrapper">
-                                <img src="img/stream-pack-1.jpg" class="slide active" alt="Stream Pack Diseño">
-                                <img src="img/stream-pack-2.jpg" class="slide" alt="Stream Pack Paneles">
-                                <img src="img/stream-pack-3.jpg" class="slide" alt="Stream Comenzando">
-                                <img src="img/stream-pack-4.jpg" class="slide" alt="Stream Pausa">
-                                <img src="img/stream-pack-5.jpg" class="slide" alt="Stream Finalizado">
-                                <img src="img/stream-pack-6.jpg" class="slide" alt="Stream Overlay">
-                                <img src="img/stream-pack-7.jpg" class="slide" alt="Stream Header">
-                            </div>
-                            <button class="prev-arrow" onclick="moveSlide(-1, this)">&#10094;</button>
-                            <button class="next-arrow" onclick="moveSlide(1, this)">&#10095;</button>
-                        </div>
-                        <div class="card-content">
-                            <span class="tag">UI/UX & Motion</span>
-                            <h3>Stream Pack Overlays</h3>
-                            <p>Paquete de overlays para Twitch diseñado con Illustrator, Photoshop y After Effects.</p>
-                            <button class="btn-text toggle-btn">Ver caso de estudio</button>
-                        </div>
-                        <div class="card-details">
-                            <h4>Contexto & Reto</h4>
-                            <p>Traducir la personalidad del creador en un ecosistema visual coherente abarcando estáticos y motion graphics, siendo mi primera experiencia gestionando requerimientos reales.</p>
-                            <h4>Proceso</h4>
-                            <p>Entrevista exploratoria de paleta y referencias. Iteré 3 conceptos. Vectoricé en Illustrator, diseñé UI en Photoshop y animé en After Effects priorizando no distraer del gameplay.</p>
-                        </div>
-                    </div>
+        <!-- EN PROCESO -->
+        <section class="lab" id="proceso" aria-labelledby="lab-title">
+            <div class="wrap">
+                <div class="lab__head" data-reveal>
+                    <p class="eyebrow">En proceso</p>
+                    <h2 class="lab__title display" id="lab-title">Lo que estoy aprendiendo ahora, sin pulir.</h2>
+                </div>
 
-                    <!-- Card 2 (GREENY - 2 Imágenes) -->
-                    <div class="card glass-effect fade-in">
-                        <div class="slider-container card-img">
-                            <div class="slider-wrapper">
-                                <img src="img/greeny-indu-1.jpg" class="slide active" alt="Greeny Bolsa">
-                                <img src="img/greeny-indu-2.jpg" class="slide" alt="Greeny Buzo">
-                            </div>
-                            <button class="prev-arrow" onclick="moveSlide(-1, this)">&#10094;</button>
-                            <button class="next-arrow" onclick="moveSlide(1, this)">&#10095;</button>
-                        </div>
-                        <div class="card-content">
-                            <span class="tag">Branding</span>
-                            <h3>Greenny Indu</h3>
-                            <p>Mockup de identidad visual e indumentaria para una marca ficticia de ropa.</p>
-                            <button class="btn-text toggle-btn">Ver caso de estudio</button>
-                        </div>
-                        <div class="card-details">
-                            <h4>Contexto & Proceso</h4>
-                            <p>Trabajo integrador universitario de branding aplicado a publicidad. Realicé un análisis de identidad visual y creación de mockups realistas en Photoshop para presentación de marca, cuidando la composición.</p>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 (FLYER - 1 Imagen, sin flechas) -->
-                    <div class="card glass-effect fade-in">
-                        <div class="slider-container card-img">
-                            <div class="slider-wrapper">
-                                <img src="img/flyer-santi.jpg" class="slide active" alt="Flyer Santi">
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <span class="tag">Publicidad & Motion</span>
-                            <h3>Flyer Bakery & Eventos</h3>
-                            <p>Diseño de flyers promocionales para redes sociales, adaptados a diferentes rubros.</p>
-                            <button class="btn-text toggle-btn">Ver caso de estudio</button>
-                        </div>
-                        <div class="card-details">
-                            <h4>Proceso & Aprendizaje</h4>
-                            <p>Composición en Photoshop utilizando colores específicos del rubro y animación en After Effects para dotar a la pieza de dinamismo. Aprendí a manejar jerarquías para promocionar eventos y productos efectivamente.</p>
-                        </div>
-                    </div>
-
+                <div class="lab__list">
+                    <article class="lab__item" data-reveal>
+                        <h3>Diario de 3D</h3>
+                        <p>Modelado, materiales e iluminación en Blender. El objetivo es integrar volumen a composiciones 2D sin que se note la costura.</p>
+                        <p class="lab__tag mono">Blender · En curso</p>
+                    </article>
+                    <article class="lab__item" data-reveal>
+                        <h3>Desafíos UI/Motion</h3>
+                        <p>Micro-interacciones, estados de hover y prototipado. Probar en Figma antes de escribir una línea de código.</p>
+                        <p class="lab__tag mono">Figma · En curso</p>
+                    </article>
+                    <article class="lab__item" data-reveal>
+                        <h3>Este sitio</h3>
+                        <p>Sin plantilla ni builder: estructura, tipografía y color escritos a mano en HTML, CSS y JavaScript. También es una pieza del portfolio.</p>
+                        <p class="lab__tag mono">Código · 2026</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 4: En proceso -->
-        <section id="laboratorio" class="fade-in">
-            <div class="container">
-                <h2 class="section-title">En proceso / Aprendizaje</h2>
-                <div class="grid-2-cols lab-grid">
-                    <div class="lab-card glass-effect glass-padding">
-                        <img src="img/lab-3d.jpg" alt="Blender 3D" class="card-img small">
-                        <h4>Diario de 3D</h4>
-                        <p>Explorando modelado, materiales e iluminación en Blender para integrar elementos volumétricos a composiciones 2D/3D.</p>
-                    </div>
-                    <div class="lab-card glass-effect glass-padding">
-                        <img src="img/lab-ui.jpg" alt="Figma UI" class="card-img small">
-                        <h4>Desafíos UI/Motion</h4>
-                        <p>Experimentando con micro-interacciones, estados hover y prototipado avanzado directamente en Figma.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- CONTACTO -->
+        <section class="contact" id="contacto" aria-labelledby="contact-title">
+            <div class="wrap contact__grid">
+                <div class="contact__intro">
+                    <p class="eyebrow" data-reveal>Contacto</p>
+                    <h2 class="contact__title display" id="contact-title" data-reveal>Hablemos<span class="accent">.</span></h2>
+                    <p data-reveal>Busco mi primera oportunidad full-time o proyectos freelance. Si tenés una marca, una interfaz o una pieza que necesita movimiento, escribime.</p>
 
-        <!-- SECCIÓN 5: Contacto -->
-        <section id="contacto" class="fade-in">
-            <div class="container form-container glass-effect glass-padding">
-                <h2>Hablemos</h2>
-                <p>Busco mi primera oportunidad full-time o proyectos freelance donde pueda aportar energía, técnica y seguir creciendo. ¡Escríbeme!</p>
-                
-               <form action="https://formspree.io/f/xoeejowp" method="POST">
-                    <input type="text" name="Nombre" placeholder="Tu Nombre" required class="glass-input">
-                    <input type="email" name="Email" placeholder="Tu Correo Electrónico" required class="glass-input">
-                    <textarea name="Mensaje" rows="5" placeholder="¿Cómo te puedo ayudar?" required class="glass-input"></textarea>
-                    <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    <div class="status" data-reveal>
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>Disponible para trabajar</span>
+                    </div>
+
+                    <nav class="socials" aria-label="Redes">
+                        <a href="https://www.linkedin.com/in/alexis-agustin-rivero-59aa9b3b1/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+                        <a href="https://www.behance.net/alexisrivero4" target="_blank" rel="noopener">Behance <span aria-hidden="true">↗</span></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
+                    </nav>
+                </div>
+
+                <form class="form" action="https://formspree.io/f/xoeejowp" method="POST" data-reveal>
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio">
+                    <div class="field">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Cómo te llamás" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="vos@estudio.com" required>
+                    </div>
+                    <div class="field">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Qué tenés en mente" required></textarea>
+                    </div>
+                    <button type="submit">Enviar mensaje <span aria-hidden="true">↗</span></button>
                 </form>
-
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/alexis-agustin-rivero-59aa9b3b1/" target="_blank">LinkedIn</a>
-                    <a href="https://www.behance.net/alexisrivero4" target="_blank">Behance</a>
-                    <a href="https://instagram.com" target="_blank">Instagram</a>
-                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>© 2026 Alexis Agustin Rivero. Diseñado con pasión y mucha curiosidad.</p>
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer__top">
+                <p class="footer__name display">Alexis Agustin Rivero</p>
+                <p class="footer__meta mono">San Luis, Argentina · 2026</p>
+            </div>
+            <div class="footer__bottom">
+                <p>Hecho a mano con HTML, CSS y JavaScript.</p>
+                <a href="#top">Volver arriba ↑</a>
+            </div>
         </div>
     </footer>
 
-    <!-- ¡Importante! Revisa que el nombre de tu archivo JS coincida (aquí dice script.js pero me compartiste script_3.js) -->
-    <script src="script.js"></script>
+    <button class="motion-toggle" type="button" hidden>Ver animaciones</button>
+
+    <script src="script.js?v=20261027m"></script>
 </body>
 </html>
