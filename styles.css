@@ -257,56 +257,34 @@ ol {
 }
 
 .theme-toggle {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0;
-    color: var(--ink);
-    font-family: var(--mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
 }
 
-.theme-toggle::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0.1rem;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
+.theme-toggle__icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
     transition: transform 0.3s var(--ease);
 }
 
-.theme-toggle:hover::after,
-.theme-toggle:focus-visible::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-.theme-toggle__dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 1px var(--rule);
-    transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
-}
-
-.theme-toggle__when-dark {
+.theme-toggle__icon--sun {
     display: none;
 }
 
-html[data-theme="dark"] .theme-toggle__when-light {
+html[data-theme="dark"] .theme-toggle__icon--moon {
     display: none;
 }
 
-html[data-theme="dark"] .theme-toggle__when-dark {
-    display: inline;
+html[data-theme="dark"] .theme-toggle__icon--sun {
+    display: block;
+}
+
+.theme-toggle:hover .theme-toggle__icon {
+    transform: scale(1.1);
 }
 
 .brand {
